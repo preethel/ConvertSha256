@@ -33,19 +33,46 @@ namespace ConvertSha256
 
         //    return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, minutes, 0);
         //}
+        //private DateTime RoundToNearest30Minutes(DateTime dateTime)
+        //{
+        //    int minutes = dateTime.Minute;
+        //    int remainder = minutes % 30;
+
+        //    if (remainder < 15)
+        //    {
+        //        // Round down to the nearest 30 minutes
+        //        minutes -= remainder;
+        //    }
+        //    else
+        //    {
+        //        // Round up to the nearest 30 minutes
+        //        minutes += (30 - remainder);
+
+        //        // Check if minutes exceed 59, and adjust the hour accordingly
+        //        if (minutes >= 60)
+        //        {
+        //            minutes = 0;
+        //            dateTime = dateTime.AddHours(1);
+        //        }
+        //    }
+
+        //    return new DateTime(
+        //        dateTime.Year,
+        //        dateTime.Month,
+        //        dateTime.Day,
+        //        dateTime.Hour,
+        //        minutes,
+        //        0, // Seconds
+        //        dateTime.Kind); // Preserve DateTimeKind
+        //}
         private DateTime RoundToNearest30Minutes(DateTime dateTime)
         {
             int minutes = dateTime.Minute;
             int remainder = minutes % 30;
 
-            if (remainder < 15)
+            if (remainder != 0)
             {
-                // Round down to the nearest 30 minutes
-                minutes -= remainder;
-            }
-            else
-            {
-                // Round up to the nearest 30 minutes
+                // Round up to the next 30 minutes
                 minutes += (30 - remainder);
 
                 // Check if minutes exceed 59, and adjust the hour accordingly
